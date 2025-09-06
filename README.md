@@ -41,6 +41,66 @@ skinalyze-chatbot/ ├── app.py             # Flask app with chat, history, 
 ```bash
 git clone https://github.com/duahashmi47/skinalyze-chatbot.git
 cd skinalyze-chatbot
+```
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Rub the QA Loader
+This script embeds questions and stores them in ChromaDB:
+```bash
+python qa_loader.py
+```
+
+### 4. Start Ollama (Mistral)
+Ensure Ollama is running locally with the Mistral model:
+```bash
+ollama pull mistral
+ollama run mistral
+```
+### 5. Launch the Flask App
+```bash
+python app.py
+```
+
+## 📡 API Endpoints
+
+| Endpoint | Method | Description                         |
+|----------|--------|-------------------------------------|
+| /chat    | POST   | Accepts user message, returns reply | 
+| /history | GET    | Returns session chat history        | 
+| /clear   | POST   | Clears session history              | 
+
+
+## 🧪 Example Request
+```bash
+POST /chat
+Content-Type: application/json
+
+{
+  "message": "What’s the best routine for oily skin?"
+}
+```
+
+
+## 📌 Notes
+- The chatbot first attempts to find a relevant answer via ChromaDB. If no match is found (distance > 0.3), it falls back to Mistral.
+- You can customize the QA dataset by editing skincare_qa.json.
+
+## 🙌 Acknowledgements
+- Mreeb/Dermatology-Question-Answer-Dataset-For-Fine-Tuning
+- UrFavB0i/skincare-ecommerce-FAQ
+- Ollama for local LLM integration
+
+## 📬 Contact
+Built with 💡 by Dua Hashmi
+Feel free to reach out or contribute!
+
+---
+
+
+
 
 
 
